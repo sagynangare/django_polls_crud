@@ -1,0 +1,15 @@
+{% extends "polls/base.html" %}
+
+{% block content %}
+
+	<form method="POST">
+		{% csrf_token %}
+		<h3>Add New Choice for: <mark style="background-color: cyan;color: white;">{{ question.question_text }}</mark> </h3>	
+
+		{{ choice.choice_text }}
+		{{ choice.votes }}
+		<input type="submit" name="Submit" class="btn btn-outline-dark-green">
+		<input type="reset" name="Reset" class="btn btn-outline-dark-brown">
+	</form>
+
+{% endblock %}

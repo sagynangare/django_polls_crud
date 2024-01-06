@@ -1,0 +1,23 @@
+{% extends "polls/base.html" %}
+
+{% block content %}
+	<form action="{% url 'vote' question.id %}" method="post">
+		{% csrf_token %}
+		<fieldset>
+		{% if error_messages %}
+		<p><strong>{{ error_messages }}</strong></p>
+		{% endif %}
+		<legend><h1>{{ question.question_text }}</h1></legend>
+
+		{% for ch in question.choice_set.all %}
+		   <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ ch.id }}">
+		   <label for="choice{{ forloop.counter }}"><strong>{{ ch.choice_text }} -- Votes:<mark style="background-color: yellow;color: black;">{{ ch.votes }}</mark></strong></label><br>
+		{% endfor %}
+		</fieldset>
+		<br>
+		<input type="submit" value="Vote" style="background-color: #e7e7e7; color: black;"><br>
+		<br>
+		<button style="background-color: #e7e7e7; color: black;"><a href="{% url 'add_choice' question.id %}" style="color:black;">Add Choice</a></button>
+	</form>
+
+{% endblock %}

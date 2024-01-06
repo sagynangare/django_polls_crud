@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+              margin: 0;
+              font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .topnav {
+              overflow: hidden;
+              background-color: #333;
+            }
+
+            .topnav a {
+              float: left;
+              color: #f2f2f2;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-size: 17px;
+            }
+
+            .topnav a:hover {
+              background-color: #ddd;
+              color: black;
+            }
+
+            .topnav a.active {
+              background-color: #4CAF50;
+              color: white;
+            }
+            .center {
+                background-color: lightgrey;
+                width: 400px;
+                border: 15px solid green;
+                padding: 50px;
+                margin: 70px;
+                align: center;
+            }
+            
+            
+        </style>
+    </head>
+    <body>
+
+        <div class="topnav">
+            <a class="active" href="{% url 'index' %}">Home</a>
+            <a href="{% url 'add_question' %}">Add Question</a>
+            <a href="">Contact</a>
+            <a href="">About</a>
+        </div>
+
+        <div class="center">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+    </body>
+</html>

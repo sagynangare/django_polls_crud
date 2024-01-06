@@ -1,0 +1,11 @@
+{% extends "polls/base.html" %}
+
+{% block content %}
+<h3 style="border: 3px solid black; font-size: 35px;">Question List:</h3>
+
+{% for q in questions %}
+	<p style="font-size: 30px; background-color: lightgray;">
+		<a href="{% url 'detail' q.id %}">{{ q.question_text }}</a>
+	</p>
+{% endfor %}
+{% endblock %}
