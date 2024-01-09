@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Question, Choice
 from django.urls import reverse
 from .forms import QuestionForm, ChoiceForm
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -31,11 +32,15 @@ def vote(request, question_id):
 		ch.save()
 		return HttpResponseRedirect(reverse("detail", args=(question_detail.id, )))
 
-
+@login_required(login_url='accounts:login')
 def add_question(request):
 	if request.method=="POST":
 		question=QuestionForm(request.POST)
 		if question.is_valid():
+			cuser=request.user #return current logged in user
+			qtext=request.POST.get('question_text')
+			pdate=request.POST.get('pub_date')
+			question=Question(question_text=qtext, pub_date=pdate, author=cuser)
 			question.save()
 			return HttpResponseRedirect(reverse("index"))
 		else:

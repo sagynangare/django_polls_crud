@@ -1,6 +1,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
         <style>
             body {
               margin: 0;
@@ -38,9 +39,21 @@
                 margin: 70px;
                 align: center;
             }
+            .topnav-right {
+                float: right;
+            }
+            .quea:hover{
+                text-decoration: none;
+                color: white;
+                background-color: hsl(261, 100%, 20%);
+                border-radius: 10px;
+                font-weight: 700;
+                padding: 10px;
+            }
             
             
         </style>
+        <title>{% block title %} {% endblock %}</title>
     </head>
     <body>
 
@@ -49,6 +62,16 @@
             <a href="{% url 'add_question' %}">Add Question</a>
             <a href="">Contact</a>
             <a href="">About</a>
+            <div class="topnav-right">
+                {% if user.is_authenticated %}
+
+                    <a href="{% url 'accounts:logout' %}" >
+                        <strong style="color: violet;">{{ user.username}}</strong> Logout</a>
+                {% else %}
+                    <a href="{% url 'accounts:register' %}" >Register</a>
+                    <a href="{% url 'accounts:login' %}" >Login</a>
+                {% endif %}
+            </div>
         </div>
 
         <div class="center">

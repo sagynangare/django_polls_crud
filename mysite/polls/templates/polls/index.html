@@ -5,7 +5,8 @@
 
 {% for q in questions %}
 	<p style="font-size: 30px; background-color: lightgray;">
-		<a href="{% url 'detail' q.id %}">{{ q.question_text }}</a>
+		<a href="{% url 'detail' q.id %}" class="quea">{{ q.question_text }}</a>
+		<sub style="font-size:16px"> - added by <mark>{{ q.author }}</mark> on {{ q.pub_date }}</sub>
 	</p>
 {% endfor %}
 {% endblock %}

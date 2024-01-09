@@ -9,7 +9,7 @@ class QuestionForm(forms.ModelForm):
 
 	class Meta:
 		model=Question
-		fields="__all__"#('question_text',)
+		fields=('question_text','pub_date')
 
 class ChoiceForm(forms.ModelForm):
 	choice_text =forms.CharField(widget=forms.TextInput(attrs={'placeholder':"Enter Choice",
